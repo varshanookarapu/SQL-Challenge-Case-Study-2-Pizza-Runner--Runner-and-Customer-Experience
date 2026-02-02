@@ -112,8 +112,8 @@ ORDER BY co.order_id
 ),
 
 -- Reasoning is that I checked for each order , what is the count of the pizzas delivered, and what is the maximum time taken to prepare the pizza.
-for instance if order 3 made two pizzas one pizza took 20 minute and the other took 25 minutes I chekecked the maximum pizza prep time,
-Then I proceeded to find the pizzas delivered and their average pizza prep time. 
+--for instance if order 3 made two pizzas one pizza took 20 minute and the other took 25 minutes I chekecked the maximum pizza prep time,
+--Then I proceeded to find the pizzas delivered and their average pizza prep time. 
 
 pizza_delivery_time_stats as 
 (

@@ -194,8 +194,21 @@ ORDER BY runner_id, order_id
 ## SQL Code
 
 ```sql
+WITH cte_delivery AS
+(
+SELECT runner_id,
+SUM(CASE WHEN cancellation IS NULL THEN 1 ELSE 0 END) as successful_orders_delivered,
+SUM(CASE WHEN cancellation IS NOT NULL THEN 1 ELSE 0 END) as orders_not_delivered,
+COUNT(order_id) as all_orders
+FROM runner_orders
+GROUP BY runner_id
+ORDER BY runner_id
+)
 
+SELECT runner_id, TRUNC((successful_orders_delivered/ CAST(all_orders AS DECIMAL))*100) as successful_delivery_percentage
+FROM cte_delivery 
 ```
 
+<img width="1044" height="235" alt="image" src="https://github.com/user-attachments/assets/9c97878a-cacd-4385-86d2-1bf55975d623" />
 
 

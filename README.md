@@ -102,7 +102,34 @@ ORDER BY runner_id
 ## SQL Code
 
 ```sql
+WITH customer_orders_runner_orders AS 
+(
+SELECT co.order_id,customer_id,pn.pizza_id,pizza_name, exclusions,extras,order_time,runner_id,pickup_time,distance,duration,cancellation FROM customer_orders co LEFT JOIN runner_orders ro ON
+co.order_id = ro.order_id 
+LEFT JOIN pizza_names pn ON
+co.pizza_id = pn.pizza_id
+ORDER BY co.order_id
+),
+
+-- Reasoning is that I checked for each order , what is the count of the pizzas delivered, and what is the maximum time taken to prepare the pizza.
+for instance if order 3 made two pizzas one pizza took 20 minute and the other took 25 minutes I chekecked the maximum pizza prep time,
+Then I proceeded to find the pizzas delivered and their average pizza prep time. 
+
+pizza_delivery_time_stats as 
+(
+SELECT order_id,COUNT(order_id) as pizzas_delivered , FLOOR(MAX(EXTRACT(EPOCH FROM (pickup_time -order_time)/60))) as time_taken_to_prepare_pizza
+FROM customer_orders_runner_orders
+WHERE cancellation  IS  null
+GROUP BY order_id 
+ORDER BY order_id
+)
+
+SELECT pizzas_delivered, AVG(time_taken_to_prepare_pizza) as avg_time_taken_to_prepare_pizza 
+FROM pizza_delivery_time_stats
+GROUP BY pizzas_delivered
+ORDER BY pizzas_delivered
 ```
+<img width="960" height="223" alt="image" src="https://github.com/user-attachments/assets/f6e754a9-7ab4-4c2d-8ea0-91916805e97f" />
 
 
 

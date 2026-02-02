@@ -55,7 +55,18 @@ SELECT * FROM runner_orders ORDER BY order_id ;
 
 ---
 
-**Question 2:** What was the average time in minutes it took for each runner to arrive at the Pizza Runner HQ to pickup the order?
+**Question 1:** How many runners signed up for each 1-week period? (i.e. week starts 2021-01-01)
+
+---
+
+## SQL Code
+
+```sql
+```
+
+
+
+**Question 2:**  What was the average time in minutes it took for each runner to arrive at the Pizza Runner HQ to pickup the order?
 
 ---
 
@@ -82,6 +93,17 @@ ORDER BY runner_id
 ```
 
 <img width="1248" height="226" alt="image" src="https://github.com/user-attachments/assets/cadaa3a6-2f54-4b0f-952a-1984c0cf04bc" />
+
+
+**Question 3:** Is there any relationship between the number of pizzas and how long the order takes to prepare?
+
+---
+
+## SQL Code
+
+```sql
+```
+
 
 
 **Question 4:** What was the average distance travelled for each customer?
@@ -139,9 +161,14 @@ ORDER BY runner_id, order_id
 
 <img width="1462" height="472" alt="image" src="https://github.com/user-attachments/assets/a6938771-e43d-44a4-87f0-664e922d229d" />
 
+**Question 7:** What is the successful delivery percentage for each runner?
+---
 
+## SQL Code
 
+```sql
 
+```
 
 
 
